@@ -1,0 +1,94 @@
+* {
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+}
+
+body {
+font-family: 'Julius Sans One', sans-serif;
+background-color: cadetblue; }
+
+a {
+text-decoration: none; 
+text-align: center;
+}
+
+.note-taker {
+width: 90%;
+margin: 1.5rem auto;
+max-width: 800px;
+}
+
+
+.note-taker 
+#textArea {
+width: 100%;
+}
+
+.title {
+padding: 50px;
+color: #255a5c;
+text-align: center; }
+
+.clear,
+.empty,
+#save {
+color:white;
+line-height: 4rem; 
+display: block;
+margin-left: auto;
+margin-right: auto;
+width:40%
+}
+
+
+.clear:focus, 
+.clear:hover, 
+.clear:active,
+.empty:focus,
+.empty:hover,
+.empty:active,
+#save:focus,
+#save:hover,
+#save:active {
+color:#255a5c;
+text-decoration: none; 
+}
+
+.textarea-wrapper {
+
+display: flex;
+flex-direction: column;
+align-items: center; }
+
+
+#save-text {
+width: 6rem;
+height: 2.25rem;
+font-size: 13px;
+margin-top: 2rem;
+border-radius: 10px;
+background-color:white;
+color:cadetblue;
+font-family: 'Julius Sans One', sans-serif;
+box-shadow: 5px 5px #255a5c;
+}
+
+textarea {
+background-color: azure;
+padding: 20px;
+color:cadetblue;
+letter-spacing: 0.09rem;
+font-size: 1rem;
+border-radius: 20px;
+font-family: 'Julius Sans One', sans-serif;
+}
+
+
+.site-footer {
+position:absolute;
+bottom:0;
+width:100%;
+text-align: center;
+color:white;
+}
