@@ -5,11 +5,11 @@ const saveTextButton = document.getElementById('save-text');
 const fileDownloadButton = document.getElementById('save');
 const textField = document.querySelector('[name=text]');
 
-function sessionStorageToFile() {
-  const csv = JSON.stringify(sessionStorage['autosave']);
+function localStorageToFile() {
+  const csv = JSON.stringify(localStorage['autosave']);
   console.log(csv);
   const csvAsBlob = new Blob([csv], { type: 'text/plain' });
-  const fileNameToSaveAs = 'session-storage.txt';
+  const fileNameToSaveAs = 'local-storage.txt';
   const downloadLink = document.getElementById('save');
   downloadLink.download = fileNameToSaveAs;
 
@@ -24,21 +24,21 @@ function sessionStorageToFile() {
   }
 }
 
-function sessionStorageSupport() {
+function localStorageSupport() {
   return typeof Storage !== 'undefined';
 }
 
-function sessionStorageAndQuota() {
+function localStorageAndQuota() {
   let myStory = document.getElementById('textArea').value;
-  if (!sessionStorageSupport) {
-    storageQuotaMsg.innerHTML = 'Sorry. No HTML5 session storage support here.';
+  if (!localStorageSupport) {
+    storageQuotaMsg.innerHTML = 'Sorry. No HTML5 local storage support here.';
   } else {
     try {
-      if (sessionStorage.getItem('autosave', myStory)) {
+      if (localStorage.getItem('autosave', myStory)) {
         
-        myStory = sessionStorage.getItem('autosave', myStory);
+        myStory = localStorage.getItem('autosave', myStory);
       } else {
-        sessionStorage.setItem('autosave', myStory);
+        localStorage.setItem('autosave', myStory);
       }
     } catch (domException) {
       domException = new DOMException();
@@ -47,7 +47,7 @@ function sessionStorageAndQuota() {
         domException.name === 'QUOTA_EXCEEDED_ERR' ||
         domException.name === 'NS_ERROR_DOM_QUOTA_REACHED'
       ) {
-        storageQuotaMsg.innerHTML = 'Session Storage Quota Exceeded!';
+        storageQuotaMsg.innerHTML = 'Local Storage Quota Exceeded!';
       }
     }
   }
@@ -56,22 +56,22 @@ function sessionStorageAndQuota() {
 function clearStorage() {
   const myStory = document.getElementById('textArea');
   myStory.value = '';
-  sessionStorage.removeItem('autosave', myStory.value);
+  localStorage.removeItem('autosave', myStory.value);
 }
 
 function emptyStorage() {
   const myStory = document.getElementById('textArea');
   myStory.value = '';
-  sessionStorage.clear();
+  localStorage.clear();
 }
 
 clearStorageButton.addEventListener('click', clearStorage);
 emptyStorageButton.addEventListener('click', emptyStorage);
 saveTextButton.addEventListener('click', function () {
-  sessionStorageAndQuota();
-  console.log('Message saved to sessionStorage.');
+  localStorageAndQuota();
+  console.log('Message saved to localStorage.');
 });
 textField.addEventListener('input', () => {
-  sessionStorage.setItem('autosave', textField.value);
+  localStorage.setItem('autosave', textField.value);
 });
-fileDownloadButton.addEventListener('click', sessionStorageToFile);
+fileDownloadButton.addEventListener('click', localStorageToFile);

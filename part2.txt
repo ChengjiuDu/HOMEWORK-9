@@ -99,16 +99,16 @@ sessionStorage.clear();
 
 example:
 
-function clearStorage() {
+function emptyStorage() {
   const myStory = document.getElementById('textArea');
   myStory.value = '';
-  sessionStorage.removeItem('autosave', myStory.value);
+  localStorage.clear();
 }
-
 
 13 When using cookies, why would you want to use the Secure flag?
 
-The secure flag is an option that can be set by the application server when sending a new cookie to the user within an HTTP Response. The purpose of the secure flag is to prevent cookies from being observed by unauthorized parties due to the transmission of a the cookie in clear text.
+The Secure flag prevents a cookie from being transmitted over HTTP. It can
+only be transmitted over HTTPS. 
 
 
 14 What is the difference between localStorage and sessionStorage?
@@ -117,7 +117,7 @@ Local storage and Session storage are the web srorage objects. Session storage i
 
 15 What are the similarities between localStorage and sessionStorage?
 
-localStorage and sessionStorage can only be read on client-side.
+ localStorage and sessionStorage accomplish the exact same thing and have the same API.
 
 
 16 Explain what try...catch is and what it does.
@@ -127,16 +127,18 @@ exception is thrown.
 
 17 Why do we have to set a try...catch statement in our application? Refer to your/this homework README.md for the answer.
 
-Because we have to catch our exception, that's why we need to use a try...catch statement.
+If there IS sessionStorage support, then the program steps into the else statement. There we set and get our sessionStorage as well as check if we have exceeded our sessionStorage quota. Because we have to catch our exception, that's why we need to use a try...catch statement.
 
 18 Explain what JSON.stringify() does and provide an example using code from your project application.
 
 The JSON. stringify method converts a JavaScript value into a JSON string. It is typically used to convert JavaScript arrays or objects to JSON, although it can also be used with simple data types like strings and numbers.
-We need to take the sessionStorage object's autosave property's value and extract it from sessionStorage and transform the value into a string so that we may insert it into a .txt file. Otherwise, the value of the sessionStorage key would not be readable.
+
 
 example : const csv = JSON.stringify(sessionStorage['autosave']);
 
 19 Describe what the value of the csv variable is and why it is important for our application.
+
+We need to take the sessionStorage object's autosave property's value and extract it from sessionStorage and transform the value into a string so that we may insert it into a .txt file. Otherwise, the value of the sessionStorage key would not be readable.
 
 CSV variables allow you to retrieve values (logins, passwords or product IDs, and so on) to be used in scenarios from CSV (comma-separated values) and text files.
 
